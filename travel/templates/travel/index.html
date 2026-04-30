@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TravelBD - Explore World</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+
+    <!-- Google Font -->
+    <link href="{% static 'css/css2.css' %}" rel="stylesheet"/>
+
+    <!-- AOS Animation -->
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+    <!-- 🔹 NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <a class="navbar-brand font-weight-bold" href="#">TravelBD</a>
+
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Packages</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Destinations</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 🔹 HERO -->
+    <section class="hero text-white">
+      <div class="container text-center" data-aos="fade-up">
+        <h1 class="display-3 font-weight-bold">Explore The World</h1>
+        <p class="lead">Discover beautiful destinations with exclusive deals</p>
+
+        <div class="glass mt-4">
+          <form class="form-row justify-content-center">
+            <input
+              class="form-control col-md-3 m-2"
+              placeholder="Destination"
+            />
+            <input type="date" class="form-control col-md-3 m-2" />
+            <button class="btn btn-modern m-2">Search</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔹 PACKAGES -->
+    <section class="container section">
+      <h2 class="text-center mb-5" data-aos="fade-up">Featured Packages</h2>
+
+      <div class="row">
+        {% for package in packages %}
+        <div class="col-md-4 mb-4" data-aos="zoom-in">
+          <div class="card card-modern bg-dark text-white">
+            <img src="{{ package.image.url }}" />
+            <div class="card-body">
+              <h5>{{ package.title }}</h5>
+              <p>{{ package.description|truncatewords:15 }}</p>
+              <p class="text-info font-weight-bold">${{ package.price }}</p>
+              <a
+                href="{% url 'package_detail' package.id %}"
+                class="btn btn-modern btn-sm"
+                >View</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- 🔹 DESTINATIONS -->
+    <section class="section text-center">
+      <h2 data-aos="fade-up">Popular Destinations</h2>
+
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-3" data-aos="fade-up">
+            <div class="destination-box">Cox's Bazar</div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up">
+            <div class="destination-box">Sajek Valley</div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up">
+            <div class="destination-box">Sylhet</div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up">
+            <div class="destination-box">Sundarbans</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔹 WHY US -->
+    <section class="container section text-center">
+      <h2 data-aos="fade-up">Why Choose Us</h2>
+
+      <div class="row mt-5">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="glass">
+            <h5>💰 Best Price</h5>
+            <p>Affordable premium packages</p>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="glass">
+            <h5>⭐ Trusted</h5>
+            <p>Thousands of happy travelers</p>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="glass">
+            <h5>📞 24/7 Support</h5>
+            <p>Always here to help</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔹 TESTIMONIAL -->
+    <section class="section text-center">
+      <div class="container">
+        <div class="glass" data-aos="zoom-in">
+          <h3>What Clients Say</h3>
+          <p>"Absolutely amazing travel experience!"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔹 CONTACT -->
+    <section class="container section">
+      <h2 class="text-center" data-aos="fade-up">Contact Us</h2>
+
+      <form class="mt-5 glass" data-aos="fade-up">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <input class="form-control" placeholder="Name" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <input class="form-control" placeholder="Email" />
+          </div>
+        </div>
+        <textarea
+          class="form-control mb-3"
+          rows="4"
+          placeholder="Message"
+        ></textarea>
+        <button class="btn btn-modern btn-block">Send Message</button>
+      </form>
+    </section>
+
+    <!-- 🔹 FOOTER -->
+    <footer class="text-center py-4">
+      <p>© 2026 TravelBD | Designed like a pro 🚀</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="{% static 'js/jquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
