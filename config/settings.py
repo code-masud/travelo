@@ -26,7 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'travel.apps.TravelConfig',
+    "accounts.apps.AccountsConfig",
+    "bookings.apps.BookingsConfig",
+    "reviews.apps.ReviewsConfig",
+    "payments.apps.PaymentsConfig",
+    "tours.apps.ToursConfig",
+    "locations.apps.LocationsConfig",
     "phonenumber_field",
 ]
 
