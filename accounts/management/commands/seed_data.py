@@ -1,4 +1,3 @@
-from os import name
 import random
 from faker import Faker
 from django.core.management.base import BaseCommand
