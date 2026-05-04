@@ -1,16 +1,9 @@
-from django.conf import settings
-from django.db import models
-from config.models import TimeStampedModel
-from tours.models import Tour
+from django.contrib import admin
+from .models import Review
 
 
-User = settings.AUTH_USER_MODEL
-
-
-class Review(TimeStampedModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    tour = models.ForeignKey(
-        Tour, related_name="reviews", on_delete=models.CASCADE)
-
-    rating = models.PositiveIntegerField()
-    comment = models.TextField()
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ("user", "tour", "rating", "created_at")
+    list_filter = ("rating",)
+    search_fields = ("user__username", "tour__title")
