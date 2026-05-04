@@ -2,7 +2,29 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .models import User, UserProfile, Agent
+from .models import User, UserProfile, Agent, Agency
+
+@admin.register(Agency)
+class AgencyAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "email",
+        "phone",
+        "country",
+        "is_active",
+        "created_at",
+    )
+
+    list_filter = ("is_active", "country")
+    search_fields = ("name", "email", "phone")
+
+    prepopulated_fields = {"slug": ("name",)}
+
+    autocomplete_fields = ("country",)
+
+    list_editable = ("is_active",)
+
+    date_hierarchy = "created_at"
 
 
 class UserProfileInline(admin.StackedInline):
